@@ -93,8 +93,7 @@ class Launcher : AppCompatActivity() {
 
         initSettings()
 
-        if (!App.driver.UsbFeatureSupported())
-        {
+        if (!App.driver.UsbFeatureSupported()) {
             val dialog: Dialog = AlertDialog.Builder(this@Launcher)
                 .setTitle("Problem")
                 .setMessage("Your phone does not support USB HOST !")
@@ -111,66 +110,76 @@ class Launcher : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         activity = this
         handler = Handler(Handler.Callback {
-            when(it.obj as String) {
-                on1_str -> {
-                    on1.isEnabled = true
-                    off1.isEnabled = false
-                }
-                off1_str -> {
-                    on1.isEnabled = false
-                    off1.isEnabled = true
-                }
-                on2_str -> {
-                    on2.isEnabled = true
-                    off2.isEnabled = false
-                }
-                off2_str -> {
-                    on2.isEnabled = false
-                    off2.isEnabled = true
-                }
-                on3_str -> {
-                    on3.isEnabled = true
-                    off3.isEnabled = false
-                }
-                off3_str -> {
-                    on3.isEnabled = false
-                    off3.isEnabled = true
-                }
-                on4_str -> {
-                    on4.isEnabled = true
-                    off4.isEnabled = false
-                }
-                off4_str -> {
-                    on4.isEnabled = false
-                    off4.isEnabled = true
-                }
-                on5_str -> {
-                    on5.isEnabled = true
-                    off5.isEnabled = false
-                }
-                off5_str -> {
-                    on5.isEnabled = false
-                    off5.isEnabled = true
-                }
-                on6_str -> {
-                    on6.isEnabled = true
-                    off6.isEnabled = false
-                }
-                off6_str -> {
-                    on6.isEnabled = false
-                    off6.isEnabled = true
-                }
-                on7_str -> {
-                    on7.isEnabled = true
-                    off7.isEnabled = false
-                }
-                off7_str -> {
-                    on7.isEnabled = false
-                    off7.isEnabled = true
-                }
+            var message = it.obj as String
+            val builder = AlertDialog.Builder(activity)
+            builder.setIcon(R.mipmap.ic_launcher)
+            builder.setTitle("Received Message")
+            builder.setMessage("The message is \"$message\"")
+            builder.setPositiveButton(
+                "Ok"
+            ) { _, _ ->
             }
+            builder.show()
+//            when(it.obj as String) {
+//                on1_str -> {
+//                    on1.isEnabled = true
+//                    off1.isEnabled = false
+//                }
+//                off1_str -> {
+//                    on1.isEnabled = false
+//                    off1.isEnabled = true
+//                }
+//                on2_str -> {
+//                    on2.isEnabled = true
+//                    off2.isEnabled = false
+//                }
+//                off2_str -> {
+//                    on2.isEnabled = false
+//                    off2.isEnabled = true
+//                }
+//                on3_str -> {
+//                    on3.isEnabled = true
+//                    off3.isEnabled = false
+//                }
+//                off3_str -> {
+//                    on3.isEnabled = false
+//                    off3.isEnabled = true
+//                }
+//                on4_str -> {
+//                    on4.isEnabled = true
+//                    off4.isEnabled = false
+//                }
+//                off4_str -> {
+//                    on4.isEnabled = false
+//                    off4.isEnabled = true
+//                }
+//                on5_str -> {
+//                    on5.isEnabled = true
+//                    off5.isEnabled = false
+//                }
+//                off5_str -> {
+//                    on5.isEnabled = false
+//                    off5.isEnabled = true
+//                }
+//                on6_str -> {
+//                    on6.isEnabled = true
+//                    off6.isEnabled = false
+//                }
+//                off6_str -> {
+//                    on6.isEnabled = false
+//                    off6.isEnabled = true
+//                }
+//                on7_str -> {
+//                    on7.isEnabled = true
+//                    off7.isEnabled = false
+//                }
+//                off7_str -> {
+//                    on7.isEnabled = false
+//                    off7.isEnabled = true
+//                }
+//            }
 
-            return@Callback  true
+            return@Callback true
         })
     }
 
@@ -213,37 +222,54 @@ class Launcher : AppCompatActivity() {
     fun on1(view: View) {
         when (view.id) {
             R.id.on_1 -> {
+                sendDataToDevice(on1_str)
             }
             R.id.on_2 -> {
+                sendDataToDevice(on2_str)
             }
             R.id.on_3 -> {
+                sendDataToDevice(on3_str)
             }
             R.id.on_4 -> {
+                sendDataToDevice(on4_str)
             }
             R.id.on_5 -> {
+                sendDataToDevice(on5_str)
             }
             R.id.on_6 -> {
+                sendDataToDevice(on6_str)
             }
             R.id.on_7 -> {
-            }
-            R.id.off_1 -> {
-            }
-            R.id.off_2 -> {
-            }
-            R.id.off_3 -> {
-            }
-            R.id.off_4 -> {
-            }
-            R.id.off_5 -> {
-            }
-            R.id.off_6 -> {
-            }
-            R.id.off_7 -> {
+                sendDataToDevice(on7_str)
             }
         }
     }
 
     fun off1(view: View) {
+        when (view.id) {
+            R.id.off_1 -> {
+                sendDataToDevice(off1_str)
+            }
+            R.id.off_2 -> {
+                sendDataToDevice(off2_str)
+            }
+            R.id.off_3 -> {
+                sendDataToDevice(off3_str)
+            }
+            R.id.off_4 -> {
+                sendDataToDevice(off4_str)
+            }
+            R.id.off_5 -> {
+                sendDataToDevice(off5_str)
+            }
+            R.id.off_6 -> {
+                sendDataToDevice(off6_str)
+            }
+            R.id.off_7 -> {
+                sendDataToDevice(off7_str)
+            }
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -262,7 +288,7 @@ class Launcher : AppCompatActivity() {
         return true
     }
 
-    fun sendDataToDevice(str:String){
+    fun sendDataToDevice(str: String) {
         val to_send2 = toByteArray2(str)
         if (to_send2 != null) {
             val retval1: Int = App.driver.WriteData(
@@ -272,6 +298,10 @@ class Launcher : AppCompatActivity() {
 
             if (retval1 < 0) Toast.makeText(
                 this@Launcher, "Failed to send data!",
+                Toast.LENGTH_SHORT
+            ).show()
+            else Toast.makeText(
+                this@Launcher, "Success fully sent data",
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -362,8 +392,7 @@ class Launcher : AppCompatActivity() {
                 builder.show()
                 disableButtons()
             }
-        }
-        else {
+        } else {
             disableButtons()
             openButton.text = "Connect"
             isOpen = false
@@ -463,6 +492,7 @@ class Launcher : AppCompatActivity() {
 
 
     var totalrecv = 0
+
     inner class ReadThread : Thread() {
         override fun run() {
             val buffer = ByteArray(4096)
