@@ -287,6 +287,13 @@ class Launcher : AppCompatActivity() {
         on5.isEnabled = true
         on6.isEnabled = true
         on7.isEnabled = true
+        off1.isEnabled = true
+        off2.isEnabled = true
+        off3.isEnabled = true
+        off4.isEnabled = true
+        off5.isEnabled = true
+        off6.isEnabled = true
+        off7.isEnabled = true
     }
 
     fun disableButtons() {
